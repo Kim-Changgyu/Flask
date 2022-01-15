@@ -93,8 +93,13 @@
 
     <section class="p-3 bg-white text-black">
       <h1 class="visually-hidden">Section</h1>
-      <p>로그인 테스트</p>
+      {% if login == null %}
+      로그인 상태가 아닙니다.
+      {% else %}
+      {{ user_id }}로 로그인 중 입니다.
+      {% endif %}
     </section>
+
     <script src="../static/dist/js/bootstrap.bundle.min.js"></script>
     <script>
       function popup_disabled() {
