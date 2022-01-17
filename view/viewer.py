@@ -6,3 +6,7 @@ viewer = Blueprint("viewer", __name__)
 @viewer.route("/main")
 def main():
     return render_template("index.html")
+
+@viewer.route("/login")
+def login():
+    return render_template("login.html")
