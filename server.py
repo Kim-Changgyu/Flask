@@ -1,15 +1,14 @@
 from distutils.log import debug
 from flask import Flask, render_template
 from flask_cors import CORS
+from view import viewer
 
 # Flask 객체 생성
 app = Flask(__name__)
 CORS(app)                   # Cross Origin Resource Sharing
 
-# 테스트를 위한 라우팅 경로 (main)
-@app.route("/main")
-def main():
-    return render_template("index.html")
+# Blueprint 등록 (라우팅 경로 모듈화)
+app.register_blueprint(viewer.viewer, url_prefix="/flask")
 
 # 서버 시작
 if __name__ == "__main__":

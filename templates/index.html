@@ -15,6 +15,58 @@
     <link href="../static/dist/css/bootstrap.min.css" rel="stylesheet" />
 
     <style>
+      details[open] summary ~ * {
+        animation: open 0.3s ease-in-out;
+      }
+
+      @keyframes open {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      details summary::-webkit-details-marker {
+        display: none;
+      }
+
+      details summary {
+        width: 100%;
+        padding: 0.5rem 0;
+        border-top: 1px solid black;
+        position: relative;
+        cursor: pointer;
+        font-size: 1.25rem;
+        font-weight: 300;
+        list-style: none;
+      }
+
+      details summary:after {
+        content: "+";
+        color: black;
+        position: absolute;
+        font-size: 1.75rem;
+        line-height: 0;
+        margin-top: 0.75rem;
+        right: 0;
+        font-weight: 200;
+        transform-origin: center;
+        transition: 200ms linear;
+      }
+      details[open] summary:after {
+        transform: rotate(45deg);
+        font-size: 2rem;
+      }
+      details summary {
+        outline: 0;
+      }
+      details p {
+        font-size: 0.95rem;
+        margin: 0 0 1rem;
+        padding-top: 1rem;
+      }
+
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
@@ -32,6 +84,11 @@
 
     <!-- Custom styles for this template -->
     <link href="../static/headers.css" rel="stylesheet" />
+
+    <!-- Web font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
   </head>
   <body>
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
@@ -68,13 +125,20 @@
               class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
             >
               <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
-              <li><a href="#" class="nav-link px-2 text-white">Contacts</a></li>
+              <li><a href="#" class="nav-link px-2 text-white" onclick="popup_disabled()">Contacts</a></li>
             </ul>
 
             <div class="text-end">
+              {% if login == null %}
               <button type="button" class="btn btn-outline-light me-2">
                 Login
               </button>
+              {% else %}
+              <span class="p-3">안녕하세요. {{ user_name }}님</span> 
+              <button type="button" class="btn btn-outline-light me-2">
+                Logout
+              </button>
+              {% endif %}
               <button
                 type="button"
                 class="btn btn-warning"
@@ -93,11 +157,20 @@
 
     <section class="p-3 bg-white text-black">
       <h1 class="visually-hidden">Section</h1>
-      {% if login == null %}
-      로그인 상태가 아닙니다.
-      {% else %}
-      {{ user_id }}로 로그인 중 입니다.
-      {% endif %}
+      <details>
+        <summary class="fw-bolder">2022-01-16 개발노트</summary>
+        <ul>
+          <li>부트스트랩(Bootstrap) 프레임워크로 헤더 예제 적용 (완료)</li>
+          <li>웹 서버 실행 파일 구현 및 라우팅 테스트 (완료)</li>
+        </ul>
+      </details>
+      <details>
+        <summary class="fw-bolder">2022-01-17 개발노트</summary>
+        <ul>
+          <li>Flask 블루프린트 기능을 활용한 라우팅 모듈화 (완료)</li>
+          <li>Firebase 원격 데이터베이스 구축 및 연동 (예정)</li>
+        </ul>
+      </details>
     </section>
 
     <script src="../static/dist/js/bootstrap.bundle.min.js"></script>
