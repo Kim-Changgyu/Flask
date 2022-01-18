@@ -129,14 +129,14 @@
             </ul>
 
             <div class="text-end">
-              {% if login == null %}
-              <button type="button" class="btn btn-outline-light me-2" onclick="location.href='login'">
-                Login
-              </button>
-              {% else %}
-              <span class="p-3">안녕하세요. {{ user_name }}님</span> 
+              {% if login_status != null %}
+              <span class="p-3">안녕하세요. {{ user_id }}님</span> 
               <button type="button" class="btn btn-outline-light me-2" onclick="location.href='login'">
                 Logout
+              </button>
+              {% else %}
+              <button type="button" class="btn btn-outline-light me-2" onclick="location.href='login'">
+                Login
               </button>
               {% endif %}
               <button
@@ -168,7 +168,7 @@
         <summary class="fw-bolder">2022-01-17 개발노트</summary>
         <ul>
           <li>Flask 블루프린트 기능을 활용한 라우팅 모듈화 (완료)</li>
-          <li>Firebase 원격 데이터베이스 구축 및 연동 (예정)</li>
+          <li>Firebase 원격 데이터베이스 구축 및 연동 (완료)</li>
         </ul>
       </details>
     </section>
