@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,10 +8,8 @@
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sign-in/">
 
-    
-
     <!-- Bootstrap core CSS -->
-<link href="../static/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
       .bd-placeholder-img {
@@ -29,37 +27,33 @@
       }
     </style>
 
-    
     <!-- Custom styles for this template -->
     <link href="../static/signin.css" rel="stylesheet">
   </head>
   <body class="text-center">
     
-<main class="form-signin">
-  <form method="get" action="/flask/login_request">
-    <!--
-    <img class="mb-4" src="../static/brand/bootstrap-logo-white.svg" alt="" width="72" height="57">
-    -->
-    
-    <div class="form-floating">
-      <input type="text" class="form-control" id="userId" placeholder="Hong-gildong">
-      <label for="userId">ID</label>
-    </div>
-    <div class="form-floating">
-      <input type="password" class="form-control" id="userPassword" placeholder="Password">
-      <label for="userPassword">Password</label>
-    </div>
+    <main class="form-signin">
+      <form method="get" action="/flask/login_request">
+        <!--
+        <img class="mb-4" src="../static/brand/bootstrap-logo-white.svg" alt="" width="72" height="57">
+        -->
+        
+        <div class="form-floating">
+          <input type="text" class="form-control" name="user_id" id="userId" placeholder="Hong-gildong">
+          <label for="userId">ID</label>
+        </div>
+        <div class="form-floating">
+          <input type="password" class="form-control" name="user_pw" id="userPassword" placeholder="Password">
+          <label for="userPassword">Password</label>
+        </div>
 
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="remember-me"> Remember me
-      </label>
-    </div>
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
-  </form>
-</main>
-
-
-    
+        <div class="checkbox mb-3">
+          <label>
+            <input type="checkbox" value="remember" name="remember"> Remember me
+          </label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+      </form>
+    </main>
   </body>
 </html>

@@ -7,12 +7,6 @@ cred = credentials.Certificate(
 firebase_admin.initialize_app(
     cred, {'databaseURL': "https://flask-a4094-default-rtdb.firebaseio.com/"})
 
-# 초기 관리자용 계정 설정
-# dir = db.reference()
-# dir.update({"Account_Count": 1})
-# dir.update(
-# {"Account": [{"account_id": 0, "user_id": "admin", "user_pw": "admin"}]})
-
 
 class FireBase_CURSOR:
     @staticmethod
@@ -34,3 +28,22 @@ class FireBase_CURSOR:
                 return account
             else:
                 return False
+
+    @staticmethod
+    def load_notices():
+        return db.reference().get()["Notice"]
+
+# 초기 관리자용 계정 설정
+# dir = db.reference()
+# dir.update(
+#     {"Account": [{"account_id": 0, "user_id": "admin", "user_pw": "admin", "auth": "admin"}]})
+
+
+# 공지사항 데이터 전송
+# notices = {"2022-01-16": ["부트스트랩(Bootstrap) 프레임워크로 헤더 예제 적용", "웹 서버 실행 파일 구현 & 라우팅 테스트"],
+#            "2022-01-17": ["Flask 블루프린트 기능을 활용한 라우팅 모듈화", "Firebase 원격 데이터베이스 구축 & 연동"],
+#            "2022-01-18": ["임시 로그인 기능 & 상태 유지 추가"],
+#            "2022-01-19": ["ID/PW 로그인 기능 추가 & 로그아웃 기능 추가", "개발노트 (공지사항) 데이터베이스화"],
+#            "2022-01-20": ["회원가입 기능 추가", "공지사항 작성 기능 추가"]}
+# dir = db.reference()
+# dir.update({"Notice": notices})

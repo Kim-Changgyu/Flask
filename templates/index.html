@@ -1,3 +1,11 @@
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <script>
+      alert("{{messages[-1]}}");
+    </script>
+  {% endif %}
+{% endwith %}
+
 <!DOCTYPE html>
 <html lang="ko">
   <head>
@@ -131,7 +139,7 @@
             <div class="text-end">
               {% if login_status != null %}
               <span class="p-3">안녕하세요. {{ user_id }}님</span> 
-              <button type="button" class="btn btn-outline-light me-2" onclick="location.href='login'">
+              <button type="button" class="btn btn-outline-light me-2" onclick="location.href='logout'">
                 Logout
               </button>
               {% else %}
@@ -157,20 +165,19 @@
 
     <section class="p-3 bg-white text-black">
       <h1 class="visually-hidden">Section</h1>
-      <details>
-        <summary class="fw-bolder">2022-01-16 개발노트</summary>
-        <ul>
-          <li>부트스트랩(Bootstrap) 프레임워크로 헤더 예제 적용 (완료)</li>
-          <li>웹 서버 실행 파일 구현 및 라우팅 테스트 (완료)</li>
-        </ul>
-      </details>
-      <details>
-        <summary class="fw-bolder">2022-01-17 개발노트</summary>
-        <ul>
-          <li>Flask 블루프린트 기능을 활용한 라우팅 모듈화 (완료)</li>
-          <li>Firebase 원격 데이터베이스 구축 및 연동 (완료)</li>
-        </ul>
-      </details>
+      <div>
+        <h2 class="fw-bold">Notice</h2>
+        {% for dates in notices.items() %}
+        <details open="True">
+          <summary class="fw-bolder">{{ dates[0] }} 개발노트</summary>
+          <ul>
+            {% for content in dates[1] %}
+            <li>{{ content }}</li>
+            {% endfor %}
+          </ul>
+        </details>
+        {% endfor %}
+      </div>
     </section>
 
     <script src="../static/dist/js/bootstrap.bundle.min.js"></script>
