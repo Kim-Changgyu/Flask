@@ -134,11 +134,13 @@
             >
               <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
               <li><a href="#" class="nav-link px-2 text-white" onclick="popup_disabled()">Contacts</a></li>
+              {% if login_status == "admin" %}
+              <li><a href="#" class="nav-link px-2 text-primary">Administration</a></li>
+              {% endif %}
             </ul>
-
             <div class="text-end">
               {% if login_status != null %}
-              <span class="p-3">안녕하세요. {{ user_id }}님</span> 
+              <span class="p-3">안녕하세요. {{ user_name }}님</span> 
               <button type="button" class="btn btn-outline-light me-2" onclick="location.href='logout'">
                 Logout
               </button>
@@ -146,13 +148,13 @@
               <button type="button" class="btn btn-outline-light me-2" onclick="location.href='login'">
                 Login
               </button>
-              {% endif %}
               <button
                 type="button"
                 class="btn btn-warning"
-                onclick="popup_disabled()"
+                onclick="location.href='signin'"
               >
                 Sign-up
+              {% endif %}
               </button>
             </div>
           </div>

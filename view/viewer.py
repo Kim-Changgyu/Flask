@@ -15,7 +15,7 @@ def main():
     notices = FireBase_CURSOR.load_notices()
 
     if current_user.is_authenticated:
-        return render_template("index.html", login_status=True, user_id=current_user.user_id, notices=notices)
+        return render_template("index.html", login_status=current_user.user_auth, user_name=current_user.user_name, notices=notices)
     else:
         return render_template("index.html", notices=notices)
 
@@ -48,3 +48,22 @@ def login_request():
 def logout():
     logout_user()
     return redirect(url_for("viewer.main"))
+
+
+@viewer.route("/signin")
+def signin():
+    return render_template("signup.html")
+
+
+@viewer.route("/signup_request", methods=["POST"])
+def signup_request():
+    if request.method == "POST":
+        new_user = User.create(str(request.form["user_id"]), str(
+            request.form["user_pw"]), str(request.form["user_name"]))
+
+        if new_user == True:
+            flash("회원가입이 완료 됐습니다.")
+        else:
+            flash("이미 존재하는 계정이거나 회원가입 과정에서 문제가 발생했습니다.")
+
+        return redirect(url_for("viewer.main"))
